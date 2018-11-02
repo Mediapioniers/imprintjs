@@ -48,8 +48,10 @@ h=w(h,33),h=u(h,m),e=p(e,h),e=w(e,31),e=v(e,d),e=v(u(e,[0,5]),[0,944331445]);f=[
 		test: function(tests){
 			var self = this;
 			return Promise.all(tests.map(function(x){
-				if (!_tests.hasOwnProperty(x))
-					throw "No test registered with the alias " + x;
+				if (!_tests.hasOwnProperty(x)) {
+                    console.error("No test registered with the alias " + x);
+                    return Promise.resolve('');
+                }
 				return _tests[x]();
 			})).then(function(values){
 				//console.log(values);
