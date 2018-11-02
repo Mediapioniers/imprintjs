@@ -35,6 +35,14 @@ h=w(h,33),h=u(h,m),e=p(e,h),e=w(e,31),e=v(e,d),e=v(u(e,[0,5]),[0,944331445]);f=[
 	// Test holder
 	var _tests = {};
 
+	var zipObject = function(keys, values) {
+		var output = {};
+		for (var k=0;k < keys.length;k++) {
+		    output[keys[k]] = values[k];
+		}
+		return output;
+	};
+
 	var imprint = scope.imprint || {
 
 		test: function(tests){
@@ -45,7 +53,7 @@ h=w(h,33),h=u(h,m),e=p(e,h),e=w(e,31),e=v(e,d),e=v(u(e,[0,5]),[0,944331445]);f=[
 				return _tests[x]();
 			})).then(function(values){
 				//console.log(values);
-				return murmurHash3.x86.hash128(values.join("~"));
+				return {hash: murmurHash3.x86.hash128(values.join("~")), results: zipObject(tests, values)};
 			})
 		},
 
